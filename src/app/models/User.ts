@@ -9,8 +9,9 @@ export interface User {
     city?: string,
     state?: string
   }  
-  image?: string,
+  // image?: string,
   isActive?: boolean,
-  balance?: number,
-  registered?: any
+  // balance?: number,
+  registered?: any,
+  hide?: boolean
 }

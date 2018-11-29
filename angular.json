@@ -24,7 +24,11 @@
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/font-awesome/css/font-awesome/",
+              "./node_modules/font-awesome/css/font-awesome/font-awesome.css",
+              "./node_modules/font-awesome/css/font-awesome/font-awesome.min.css",
+              "./node_modules/font-awesome/fonts/font-awesome"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
