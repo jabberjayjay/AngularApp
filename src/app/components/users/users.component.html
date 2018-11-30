@@ -2,24 +2,54 @@
 
 <div class="card card-body" *ngIf="showUserForm">
   <h2>Add User</h2>
-  <form (submit)="onSubmit($event)">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 
     <div class="form-group">
       <label> First Name </label>
-      <input type="text" [(ngModel)]="user.firstName" class="form-control" name="firstName">
+      <input type="text" [(ngModel)]="user.firstName" [ngClass]="{'is-invalid': userFirstName.errors && userFirstName.touched}"
+        class="form-control" name="firstName" #userFirstName="ngModel" required minlength="2">
+
+
+      <div [hidden]="!userFirstName.errors?.required" class="invalid-feedback">
+        First Name required.
+      </div>
+      <div [hidden]="!userFirstName.errors?.minlength" class="invalid-feedback">
+        Must be at least 2 characters
+      </div>
     </div>
+
     {{user.firstName}}
     <div class="form-group">
       <label> Last Name </label>
-      <input type="text" [(ngModel)]="user.lastName" class="form-control" name="lastName">
+      <input type="text" [(ngModel)]="user.lastName" [ngClass]="{'is-invalid': userLastName.errors && userLastName.touched}"
+        class="form-control" name="lastName" #userLastName="ngModel" required minlength="2">
+
+        
+      <div [hidden]="!userLastName.errors?.required" class="invalid-feedback">
+        Last Name required.
+      </div>
+      <div [hidden]="!userLastName.errors?.minlength" class="invalid-feedback">
+        Must be at least 2 characters
+      </div>
     </div>
 
     <div class="form-group">
-      <label> Age </label>
-      <input type="number" class="form-control" [(ngModel)]="user.age" name="age">
+      <label> Email </label>
+      
+      <input type="email" [(ngModel)]="user.email" 
+      [ngClass]="{'is-invalid': userEmail.errors && userEmail.touched}"
+        class="form-control" name="email" #userEmail="ngModel" required pattern="[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+(?:[A-z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b">
+
+        
+      <div [hidden]="!userEmail.errors?.required" class="invalid-feedback">
+        Must be at least 2 characters
+      </div>
+      <div [hidden]="!userEmail.errors?.pattern" class="invalid-feedback">
+        Email is not valid.
+      </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label> Street </label>
       <input type="text" class="form-control" [(ngModel)]="user.address.street" name="street">
     </div>
@@ -32,11 +62,9 @@
     <div class="form-group">
       <label> County </label>
       <input type="text" class="form-control" [(ngModel)]="user.address.state"  name="state">
-    </div>
-    <button (click)="addUser()" [disabled] =
-    "user.firstName == '' || user.lastName == '' " 
-    class="btn-block mb-3"
-      [ngClass]="currentClasses">Add New User</button>
+    </div> -->
+    <button [disabled]="!userForm.form.valid " class="btn-block mb-3" [ngClass]="currentClasses">Add
+      New User</button>
   </form>
 
 </div>
@@ -55,14 +83,15 @@
     <!-- </div> -->
 
 
-    <h3> {{ user.firstName }} {{user.lastName}} <small *ngIf="user.age && user.address">
+    <h3> {{ user.firstName }} {{user.lastName}}
+      <small>
         <button (click)="toggleHide(user)" class="btn btn-dark btn-sm">
           <i [ngClass]="user.hide ?'fa fa-plus' : 'fa fa-minus' "></i></button>
       </small> </h3>
 
-    <ul class="list-group" *ngIf="!user.hide && user.age && user.address">
-      <li class="list-group-item"> Age: {{user.age}}</li>
-      <li class="list-group-item"> Address : {{user.address.street}} {{user.address.city}} {{user.address.state}}</li>
+    <ul class="list-group" *ngIf="!user.hide ">
+      <li class="list-group-item"> Email: {{user.email}}</li>
+      <!-- <li class="list-group-item"> Address : {{user.address.street}} {{user.address.city}} {{user.address.state}}</li> -->
       <!-- <div class="list-group-item">Balance: {{user.balance | currency:"EUR":"symbol"}} until {{ .5 | percent}}</div> -->
       <li class="list-group-item">Joined: {{ user.registered | date: "longDate"}}</li>
     </ul>
