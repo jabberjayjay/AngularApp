@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../../models/User';
 
-import{DataService} from '../../services/data.service';
+import{UserService} from '../../services/user.service';
 
 
 @Component({
@@ -37,11 +37,11 @@ export class UsersComponent implements OnInit {
   // currentStyles = {};
 
 
-  constructor(private dataService: DataService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
 
-    this.dataService.getData().subscribe(data => {
+    this.userService.getData().subscribe(data => {
       console.log(data);
 
     });
@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
 
 
     // asynchronous arrow function (stream)
-    this.dataService.getUsers().subscribe(users => {
+    this.userService.getUsers().subscribe(users => {
       this.users = users;
       this.loaded = true;
     })
@@ -106,7 +106,7 @@ export class UsersComponent implements OnInit {
       value.hide = true;
 
       // passing in value object from the form
-      this.dataService.addUser(value);
+      this.userService.addUser(value);
 
       // reset the form
       this.form.reset();
