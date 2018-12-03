@@ -1,3 +1,57 @@
+VLOGGER
+USER MANUAL
+***************************************************
+
+
+PLEASE USE WORD DOCUMENT USER MANUAL FOR BETTER USER EXPERIENCE.
+AVAILABLE IN .DOC AND .RTF FORMATS IN THE MAIN APP DIRECTORY ON GIT HUB.
+
+1.	NAVIGATION
+START PAGE
+ 
+Basic navigation from the splash page is separated into two sections.
+-User Section
+-Posts Section
+
+
+
+
+
+
+2.	Users
+
+ 
+The Users section contains user name, email and registration details.  New users can be added by clicking the Add User Button.
+
+User details are validated for correct text information.  Email addresses are checked for correct domains and string values.
+
+When a new user is added, today’s date is set as their joined date.
+
+**Please note that in this version of Vlogger, user information is only stored locally while the program is running.
+
+Future updates will include user validation and cloud group security.
+
+
+3.	POSTS
+Posts section loads posts from the database.  Each post is loaded sequentially from server.
+
+
+
+New Posts can be added by entering a title, text body, and then clicking the 
+Add Post Button.
+
+DELETE POST  
+The red X Icon will delete a post.  The user is prompted to check if they are sure and then the post is removed from the post list and server.
+
+
+
+
+
+EDIT
+Post can be edited by clicking the pencil icon.  The form is then converted into an editing panel with a yellow button to denote that changes will update a current post thus overwriting it on the blog page and server database.
+ 
+
+
 # Angularapp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
